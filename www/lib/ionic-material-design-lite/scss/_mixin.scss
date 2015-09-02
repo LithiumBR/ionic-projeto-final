@@ -1,0 +1,359 @@
+@mixin button__coloured-states($normal, $active) {
+  &:hover {
+    @extend .mdl-button:hover;
+    background-color: $normal;
+    &:not(:active) {
+      @include shadow-2dp();
+    }
+  }
+
+  &:focus:not(:active), &.activated {
+    background-color: $normal;
+  }
+
+  &:focus {
+    @extend .mdl-button:focus;
+    background-color: $normal;
+  }
+
+  &:active {
+    background-color: $active;
+  }
+
+  &.disabled,
+  &[disabled] {
+    background-color: $normal;
+  }
+
+  .mdl-ripple {
+    background: lighten($normal, 20%);
+  }
+}
+
+@mixin button__coloured-outline-states($normal, $active) {
+  color: $normal;
+  background-color: transparent;
+
+  &:hover {
+    @extend .mdl-button:hover;
+    color: $normal;
+    &:not(:active) {
+      box-shadow: none;
+    }
+  }
+
+  &:focus {
+    @extend .mdl-button:focus;
+    color: $normal;
+  }
+
+  &:active {
+    color: $active;
+  }
+
+  &.disabled,
+  &[disabled] {
+    color: $normal;
+  }
+
+  .mdl-ripple {
+    background: lighten($active, 20%);
+  }
+}
+
+@mixin override-ionic-icon($style, $code-point, $fontOverride: true) {
+  .#{$style}:before,
+  {
+    @if $fontOverride {
+      font-family: 'Material Icons';
+    }
+
+    content: $code-point;
+  }
+}
+
+@mixin tab-colour-mdl-ripple($style, $color, $darken: false) {
+  .#{$style} {
+    .mdl-tabs__tab .mdl-tabs__ripple-container {
+      & .mdl-ripple {
+        @if $darken {
+          background: darken($color, 20%);
+        } @else {
+          background: lighten($color, 20%);
+        }
+      }
+    }
+  }
+}
+
+@mixin tab-border-color($style, $color) {
+  .#{$style} {
+    .tab-item, .mdl-tabs__tab {
+      color: rgba($color, $tabs-striped-off-opacity);
+
+      &.tab-item-active {
+        color: $color;
+      }
+
+      &.tab-item-active:before {
+        background: $color;
+      }
+    }
+
+    .mdl-tabs__tab .mdl-tabs__ripple-container {
+      & .mdl-ripple {
+        background: lighten($color, 20%);
+      }
+    }
+  }
+}
+
+@mixin mdl-tabs-striped($style, $color, $background) {
+  .#{$style} {
+    .tabs, .tabs-striped.tabs {
+      background-color: $background;
+    }
+    .tab-item, .mdl-tabs__tab {
+      color: rgba($color, $tabs-striped-off-opacity);
+      opacity: 1;
+      .badge {
+        @extend .mdl-badge;
+      }
+      &.tab-item-active,
+      &.active,
+      &.activated {
+        color: $color;
+        border-style: solid;
+        border-width: 0;
+        border-color: $color;
+      }
+
+      &.tab-item-active:before {
+        background: $color;
+      }
+    }
+  }
+  .tabs-top{
+    .tab-item {
+      &.tab-item-active,
+      &.active,
+      &.activated {
+        .badge {
+          top: 10%;
+        }
+      }
+
+      .badge {
+        top: 10%;
+      }
+    }
+  }
+}
+
+/* Typography */
+
+@mixin roboto-font($type, $weight, $style: normal) {
+  @font-face {
+    font-family: 'Roboto-#{$type}';
+    src: url('#{$roboto-font-path}/Roboto-#{$type}.woff2') format('woff2'),
+    url('#{$roboto-font-path}/Roboto-#{$type}.woff') format('woff');
+  }
+}
+
+@mixin roboto-font-pair($type, $weight) {
+  @include roboto-font($type, $weight);
+  @include roboto-font(#{$type}Italic, $weight, italic);
+}
+
+@include roboto-font-pair('Thin', 100);
+@include roboto-font-pair('Light', 300);
+@include roboto-font-pair('Regular', 400);
+@include roboto-font-pair('Medium', 500);
+@include roboto-font-pair('Bold', 700);
+@include roboto-font-pair('Black', 900);
+
+@mixin roboto-family($type, $weight: normal) {
+  font-family: 'Roboto-#{$type}' -apple-system, "Helvetica Neue", sans-serif;
+  font-weight: $weight;
+}
+
+@mixin typo-display-4($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Light', 300);
+  font-size: 112px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-display-3($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 56px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-display-2($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 45px;
+  line-height: 48px;
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-display-1($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 34px;
+  line-height: 40px;
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-headline($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 24px;
+  line-height: 32px;
+  -moz-osx-font-smoothing: grayscale;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-title($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Medium', 500);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-subhead($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-subhead-2($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 400);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-body-2($colorContrast: false, $usePreferred: false) {
+  @include roboto-family('Medium', 500);
+  font-size: 14px;
+  @if $usePreferred {
+    font-weight: 500;
+  } @else {
+    font-weight: bold;
+  }
+  line-height: 24px;
+  letter-spacing: 0;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-body-1($colorContrast: false, $usePreferred: false) {
+  @include roboto-family('Regular', 400);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-caption($colorContrast: false, $usePreferred: false) {
+  @include roboto-family('Regular', 400);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-blockquote($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Regular', 300);
+  position: relative;
+  font-size: 24px;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  font-style: italic;
+
+  &:before {
+    position: absolute;
+    left: -0.5em;
+    content: '“';
+  }
+
+  &:after {
+    content: '”';
+    margin-left: -0.05em;
+  }
+
+  @if $colorContrast {
+    opacity: 0.54;
+  }
+}
+
+@mixin typo-menu($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Medium', 500);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin typo-button($colorContrast: false, $usePreferred: true) {
+  @include roboto-family('Medium', 500);
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0;
+
+  @if $colorContrast {
+    opacity: 0.87;
+  }
+}
+
+@mixin input-focus-color($color) {
+  &:after {
+    background-color: $color;
+  }
+}

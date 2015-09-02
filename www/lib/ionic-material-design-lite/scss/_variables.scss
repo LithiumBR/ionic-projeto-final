@@ -1,0 +1,39 @@
+/**
+* Colours
+*/
+$light:                           #FAFAFA;
+$stable:                          #F5F5F5;
+$positive:                        #3F51B5;
+$calm:                            #2196F3;
+$balanced:                        #4CAF50;
+$energized:                       #FFC107;
+$assertive:                       #F44336;
+$royal:                           #673AB7;
+$dark:                            #212121;
+
+$color-map: (
+  'light': $light,
+  'stable': $stable,
+  'positive': $positive,
+  'calm': $calm,
+  'balanced': $balanced,
+  'energized': $energized,
+  'assertive': $assertive,
+  'royal': $royal,
+  'dark': $dark
+);
+
+/**
+* Bars
+*/
+$bar-height: 56px; // @TODO assign only to android
+$bar-subheader-height: 48px;
+$expanded-bar-height: ($bar-height + 72px);
+
+/**
+* Typography
+*/
+$preferred_font: 'Roboto', 'Helvetica', 'Arial', sans-serif !default;
+$performance_font: 'Helvetica', 'Arial', sans-serif !default;
+$roboto-font-path: '../fonts/roboto' !default;
+$material-icon-font-path: '../fonts/material-icons' !default;
