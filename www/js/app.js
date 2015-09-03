@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -16,7 +16,7 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
 
-    
+
   });
 })
 
@@ -30,12 +30,13 @@ angular.module('starter', ['ionic'])
     
     .state('home', {
       url: '/home',
-      templateUrl: 'templates/home.html'
+      templateUrl: 'templates/home.html',
+      controller: 'homeCtrl'
     })
     
-    .state('page4', {
+    .state('materias', {
       url: '/materias',
-      templateUrl: 'page4.html'
+      templateUrl: 'templates/materias.html'
     })
     ;
 
