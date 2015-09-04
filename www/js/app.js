@@ -42,12 +42,18 @@ angular.module('starter', ['ionic','starter.controllers','ionic.utils'])
     
     .state('materias', {
       url: '/materias',
-      templateUrl: 'templates/materias.html'
+      templateUrl: 'templates/materias.html',
+      controller: 'materiasCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback
   
-  $urlRouterProvider.otherwise('/home');
+  if(window.localStorage["nome"]) {
+    $urlRouterProvider.otherwise('/materias');
+  } else {
+    $urlRouterProvider.otherwise('/home');    
+  }
+  
   
 
 });
