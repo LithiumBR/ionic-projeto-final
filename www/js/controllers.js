@@ -12,20 +12,53 @@ angular.module('starter.controllers', [])
 			$state.go('materias');
 		}
 	}; 
+
 })
 
-.controller("materiasCtrl",function($scope,$state,$localstorage) {
+.controller("materiasCtrl",function($scope,$state,$localstorage,$ionicModal) {
 
-	if($localstorage.getObject("nome")) {
-		var currentLogin = [];
+	$scope.userNome = null;
+	$scope.userPeriodo = null;
 
-		currentLogin.nome = $localstorage.get("nome");
-		currentLogin.periodo = $localstorage.get("periodo");
-
-		$scope.currentLogin = currentLogin;
-
+	if(localStorage.getItem('materias')) {
+		$scope.materias = JSON.parse(localStorage.materias);
 	} else {
-		$state.go('home');
+		$scope.materias = [];
+	}
+
+	if($localstorage.get("nome") && $localstorage.get("periodo")) {
+		$scope.userNome = $localstorage.get("nome");
+		$scope.userPeriodo = $localstorage.get("periodo");
+	}
+
+	$ionicModal.fromTemplateUrl("templates/modal-materia.html",{
+		scope:$scope,
+		animation:"slide-in-up"
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+
+	$scope.addItem = function(materia) {
+
+		if(materia) {
+
+			$scope.materias.push({
+				name:materia
+			});
+
+			localStorage.setItem("materias",JSON.stringify($scope.materias))
+
+			$scope.materia = "";
+			$scope.modal.hide();
+
+		}
+	}
+
+	$scope.clearAll = function() {
+		$scope.items = [];
+
+		localStorage.clear();
+
 	}
 })
 
