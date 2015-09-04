@@ -1,0 +1,302 @@
+.platform-android, .platform-override {
+  .button {
+    @extend .mdl-button;
+    @extend .mdl-button--raised;
+    @include roboto-family('Medium', 500);
+
+    overflow: hidden;
+
+    &.activated, &.active {
+      @extend .mdl-button;
+      @extend .mdl-button--raised;
+      @include roboto-family('Medium', 500);
+    }
+
+    &:focus:not(:active) {
+      @include shadow-2dp();
+    }
+
+    &:hover, &:focus {
+      background-color: $button-default-bg;
+    }
+
+    &:active {
+      background-color: $button-default-active-bg;
+    }
+
+    &.disabled,
+    &[disabled] {
+      opacity: .4;
+      cursor: default !important;
+      pointer-events: none;
+    }
+
+    &.button-small {
+      @extend .button-small;
+    }
+
+    &.button-large {
+      @extend .button-large;
+    }
+
+    &.button-positive,
+    &.button-calm,
+    &.button-assertive,
+    &.button-balanced,
+    &.button-energized,
+    &.button-royal,
+    &.button-dark {
+      color: #FFFFFF;
+
+      &.disabled,
+      &[disabled] {
+        color: #FFFFFF;
+      }
+    }
+
+    &.button-light {
+      @include button__coloured-states($button-light-bg, $button-light-active-bg);
+      background-color: $button-light-bg;
+    }
+
+    &.button-stable {
+      @include button__coloured-states($button-stable-bg, $button-stable-active-bg);
+      background-color: $button-stable-bg;
+    }
+
+    &.button-positive {
+      @include button__coloured-states($button-positive-bg, $button-positive-active-bg);
+      background-color: $button-positive-bg;
+    }
+
+    &.button-calm {
+      @include button__coloured-states($button-calm-bg, $button-calm-active-bg);
+      background-color: $button-calm-bg;
+    }
+
+    &.button-assertive {
+      @include button__coloured-states($button-assertive-bg, $button-assertive-active-bg);
+      background-color: $button-assertive-bg;
+    }
+
+    &.button-balanced {
+      @include button__coloured-states($button-balanced-bg, $button-balanced-active-bg);
+      background-color: $button-balanced-bg;
+    }
+
+    &.button-energized {
+      @include button__coloured-states($button-energized-bg, $button-energized-active-bg);
+      background-color: $button-energized-bg;
+    }
+
+    &.button-royal {
+      @include button__coloured-states($button-royal-bg, $button-royal-active-bg);
+      background-color: $button-royal-bg;
+    }
+
+    &.button-dark {
+      @include button__coloured-states($button-dark-bg, $button-dark-active-bg);
+      background-color: $button-dark-bg;
+    }
+  }
+
+  .button {
+    &.button-outline, &.button-clear, &.icon, &.button-icon {
+      box-shadow:none;
+
+      &:focus:not(:active) {
+        box-shadow:none;
+      }
+
+      &:focus, &:hover {
+        color: $button-dark-bg;
+      }
+
+      &.button-positive,
+      &.button-calm,
+      &.button-assertive,
+      &.button-balanced,
+      &.button-energized,
+      &.button-royal,
+      &.button-dark {
+        color: #FFFFFF;
+
+        &.disabled,
+        &[disabled] {
+          color: #FFFFFF;
+        }
+      }
+
+      &.button-light {
+        @include button__coloured-outline-states($button-dark-bg, $button-dark-bg);
+      }
+
+      &.button-stable {
+        @include button__coloured-outline-states($button-stable-bg, $button-stable-active-bg);
+        color: $button-dark-bg;
+
+        &:focus, &:hover {
+          color: $button-dark-bg;
+        }
+      }
+
+      &.button-positive {
+        @include button__coloured-outline-states($button-positive-bg, $button-positive-active-bg);
+      }
+
+      &.button-calm {
+        @include button__coloured-outline-states($button-calm-bg, $button-calm-active-bg);
+      }
+
+      &.button-assertive {
+        @include button__coloured-outline-states($button-assertive-bg, $button-assertive-active-bg);
+      }
+
+      &.button-balanced {
+        @include button__coloured-outline-states($button-balanced-bg, $button-balanced-active-bg);
+      }
+
+      &.button-energized {
+        @include button__coloured-outline-states($button-energized-bg, $button-energized-active-bg);
+      }
+
+      &.button-royal {
+        @include button__coloured-outline-states($button-royal-bg, $button-royal-active-bg);
+      }
+
+      &.button-dark {
+        @include button__coloured-outline-states($button-dark-bg, $button-dark-active-bg);
+      }
+    }
+
+    &.button--fab {
+      @extend .mdl-button--fab;
+      height: $button-fab-size;
+      width: $button-fab-size;
+
+      &.button--fab-mini {
+        height: $button-fab-size-mini;
+        min-width: $button-fab-size-mini;
+        width: $button-fab-size-mini;
+      }
+
+      &.button-light {
+        @include button__coloured-states($button-light-bg, $button-light-active-bg);
+        background-color: $button-light-bg;
+      }
+
+      &.button-stable {
+        @include button__coloured-states($button-stable-bg, $button-stable-active-bg);
+        background-color: $button-stable-bg;
+      }
+
+      &.button-positive {
+        @include button__coloured-states($button-positive-bg, $button-positive-active-bg);
+        background-color: $button-positive-bg;
+      }
+
+      &.button-calm {
+        @include button__coloured-states($button-calm-bg, $button-calm-active-bg);
+        background-color: $button-calm-bg;
+      }
+
+      &.button-assertive {
+        @include button__coloured-states($button-assertive-bg, $button-assertive-active-bg);
+        background-color: $button-assertive-bg;
+      }
+
+      &.button-balanced {
+        @include button__coloured-states($button-balanced-bg, $button-balanced-active-bg);
+        background-color: $button-balanced-bg;
+      }
+
+      &.button-energized {
+        @include button__coloured-states($button-energized-bg, $button-energized-active-bg);
+        background-color: $button-energized-bg;
+      }
+
+      &.button-royal {
+        @include button__coloured-states($button-royal-bg, $button-royal-active-bg);
+        background-color: $button-royal-bg;
+      }
+
+      &.button-dark {
+        @include button__coloured-states($button-dark-bg, $button-dark-active-bg);
+        background-color: $button-dark-bg;
+      }
+
+      &:active {
+        @include shadow-4dp();
+      }
+
+      &:focus:not(:active), &.activated, &.active {
+        @include focus-shadow();
+      }
+    }
+  }
+
+  .button {
+    &.mdl-button__ripple-container {
+      @extend .mdl-button__ripple-container;
+    }
+  }
+
+  .item__actions {
+    .button {
+      min-height: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+
+  .tab-item {
+    max-width: 100%;
+
+    .button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .button {
+    &.button-icon, &.icon {
+      @extend .mdl-button--icon;
+      background-color: transparent;
+      min-height: inherit;
+      height: $button-fab-size-mini;
+      width: $button-fab-size-mini;
+
+      &.button--fab {
+        height: $button-fab-size;
+        width: $button-fab-size;
+
+        &.button--fab-mini {
+          height: $button-fab-size-mini;
+          min-width: $button-fab-size-mini;
+          width: $button-fab-size-mini;
+        }
+      }
+
+      &.button-icon:before,
+      &.icon:before,
+      &:before,
+      &.icon-left:before,
+      &.icon-right:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 0;
+        transform: translate(- $button-fab-font-size / 2, - $button-fab-font-size / 2);
+        line-height: $button-fab-font-size;
+        width: $button-fab-font-size;
+        font-size: $button-fab-font-size;
+
+        & .mdl-button__ripple-container {
+          height: 32px;
+          width: 32px;
+          transform: translate($button-fab-font-size / 2, $button-fab-font-size / 2);
+        }
+      }
+    }
+  }
+}
