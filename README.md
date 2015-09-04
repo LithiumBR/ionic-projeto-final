@@ -34,6 +34,12 @@ Importante informar que a Lithium não comercializará o aplicativo e nem exibir
 ##### Tela 03:
 ![Tela 03](https://raw.githubusercontent.com/Lithium-us/ionic-projeto-final/master/images/tela-03.png "Tela 03")
 
+##### PSDs:
+
+[https://github.com/LithiumBR/ionic-projeto-final/blob/master/images/login.psd](https://github.com/LithiumBR/ionic-projeto-final/blob/master/images/login.psd)
+
+[https://github.com/LithiumBR/ionic-projeto-final/blob/master/images/logo.psd](https://github.com/LithiumBR/ionic-projeto-final/blob/master/images/logo.psd)
+
 ### Detalhes:
 - Deve ser construído um aplicativo que funcione como um boletim escolar para controle pessoal.
 - Inicialmente, o usuário deve cadastrar seu nome e o tipo de boletim (bimestral ou trimestral). 
