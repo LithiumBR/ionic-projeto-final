@@ -22,8 +22,11 @@ Importante informar que a Lithium não comercializará o aplicativo e nem exibir
 
 ### Telas:
 
+##### Logo (Criado por Alexandre Santos):
+![Logo](https://raw.githubusercontent.com/LithiumBR/ionic-projeto-final/master/images/logo.png "Logo")
+
 ##### Tela 01:
-![Tela 01](https://raw.githubusercontent.com/Lithium-us/ionic-projeto-final/master/images/tela-01.png "Tela 01")
+![Tela 01](https://raw.githubusercontent.com/LithiumBR/ionic-projeto-final/master/images/login.png "Tela 01")
 
 ##### Tela 02:
 ![Tela 02](https://raw.githubusercontent.com/Lithium-us/ionic-projeto-final/master/images/tela-02.png "Tela 02")
