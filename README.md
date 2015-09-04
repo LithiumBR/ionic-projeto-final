@@ -1,6 +1,13 @@
 # Projeto final do [Curso de Ionic](http://lithium.net.br/cursos/ionic.html)
 Trata-se de um projeto criado pelo alunos do curso de Ionic Framework da Lithium. 
 
+## Sumário
+1. [Como funciona?](#como-funciona)
+2. [Características básicas do projeto](#características-básicas-do-projeto)
+  * [Telas](#telas)
+  * [Detalhes](#detalhes)
+3. [Como enviar seu código?](#como-enviar-seu-código)
+
 ## Como funciona? 
 
 O projeto inicia com o template blank do Ionic e é desenvolvido pelos próprios alunos, por meio de pull requests. Cada pull request, deve conter uma das seguintes categorias:
