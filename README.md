@@ -41,7 +41,9 @@ Importante informar que a Lithium não comercializará o aplicativo e nem exibir
 
 ## Como enviar seu código? 
 
-Faça um fork deste repositório, crie um branch com suas modificações e envie um pulo request descrevendo suas modificações.
+Faça um fork deste repositório, crie um branch com suas modificações e envie um pull request descrevendo suas modificações.
+
+GitHub Help: [https://help.github.com/articles/using-pull-requests/](https://help.github.com/articles/using-pull-requests/)
 
 Na primeira vez que fizer o fork, precisará instalar os pacotes do projeto, com o comando:
 
