@@ -1,14 +1,31 @@
 angular.module('starter.controllers', [])
 
-.controller("homeCtrl",function($scope,$state) {
+.controller("homeCtrl",function($scope,$state,$localstorage,$app) {
 
-	$scope.submitForm = function(form) {
-		if(form.$valid) {
+	$scope.submitForm = function(data) {
+
+		if(data.nome && data.periodo) {
+
+			$localstorage.set('nome',data.nome);
+			$localstorage.set('periodo',data.periodo);
+
 			$state.go('materias');
-		} else {
-			alert("formulario invalido");
 		}
 	}; 
-
-
 })
+
+.controller("materiasCtrl",function($scope,$state,$localstorage) {
+
+	if($localstorage.getObject("nome")) {
+		var currentLogin = [];
+
+		currentLogin.nome = $localstorage.get("nome");
+		currentLogin.periodo = $localstorage.get("periodo");
+
+		$scope.currentLogin = currentLogin;
+
+	} else {
+		$state.go('home');
+	}
+})
+
