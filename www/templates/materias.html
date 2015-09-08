@@ -9,9 +9,17 @@
 	</ion>
 
   <ion-content class="has-subheader" padding="true">
-     <ul class="list">
-	    <li class="item" ng-repeat="item in materias">
-	      {{item.name}}
-	    </li>
-	</ul>
+
+  	<ion-list>
+  	  <ion-item ng-repeat="item in materias track by $index"
+  	  show-delete="shouldShowDelete">
+  	    {{item.name}}
+
+  	    <ion-option-button class="button button-assertive" ng-click="remove($index)">
+	      Remover
+	    </ion-option-button>
+
+  	  </ion-item>
+  	</ion-list>
+
 </ion-view>

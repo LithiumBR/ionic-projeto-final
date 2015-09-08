@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller("materiasCtrl",function($scope,$state,$localstorage,$ionicModal) {
+.controller("materiasCtrl",function($scope,$state,$localstorage,$ionicModal,$ionicListDelegate) {
 
 	$scope.userNome = null;
 	$scope.userPeriodo = null;
@@ -52,6 +52,12 @@ angular.module('starter.controllers', [])
 			$scope.modal.hide();
 
 		}
+	}
+
+	$scope.remove = function(index) {
+		$scope.materias.splice(index,1);
+		localStorage.setItem("materias",JSON.stringify($scope.materias));
+		$ionicListDelegate.closeOptionButtons();
 	}
 
 	$scope.clearAll = function() {
