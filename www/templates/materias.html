@@ -1,17 +1,34 @@
 <ion-view view-title="Materias">
-	<ion-nav-buttons side="right">
-      <button class="button icon-right ionicon ion-plus-round" ng-click="modal.show()">
-	      </button>
-	</ion-nav-buttons>
+    
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-minus-outline" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-navicon" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+        </button>
+        <button class="button icon-right ionicon ion-plus-round" ng-click="modal.show()">
+        </button>
+    </ion-nav-buttons>
 
-	<ion class="bar bar-subheader">
-	  <h2 class="title">Matérias de {{userNome}}</h2>
-	</ion>
 
-  <ion-content class="has-subheader" padding="true">
-     <ul class="list">
-	    <li class="item" ng-repeat="item in materias">
-	      {{item.name}}
-	    </li>
-	</ul>
+
+    <ion class="bar bar-subheader">
+        <h2 class="title">Matérias de {{userNome}}</h2>
+    </ion>
+
+
+    <ion-content class="has-subheader" padding="true">
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+            <ion-item ng-repeat="item in materias track by $index">
+                {{item.name}}
+
+                
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+                </ion-delete-button>
+
+                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+            </ion-item>
+
+        </ion-list>
 </ion-view>
