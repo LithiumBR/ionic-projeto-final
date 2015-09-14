@@ -1,0 +1,37 @@
+<ion-view view-title="Editar">
+    <div class="bar bar-subheader">
+        <h2 class="title">Matéria de {{current.name}} <small>({{periodo}})</small></h2>
+    </div>
+    <ion-content padding="true" class="has-subheader">
+
+        <div class="row" ng-if="periodo == 'bimestral'">
+            <div class="col col-50">
+	            <card-nota></card-nota>
+            </div>
+            <div class="col col-50">
+	            <card-nota></card-nota>
+            </div>
+        </div>
+        <div class="row" ng-if="periodo == 'bimestral'">
+            <div class="col col-50">
+	            <card-nota></card-nota>
+            </div>
+            <div class="col col-50">
+	            <card-nota></card-nota>
+            </div>
+        </div>
+
+        <!-- Trimestral -->
+        <div class="row" ng-if="periodo == 'trimestral'">
+        	<div class="col col-33">
+	            <card-nota></card-nota>
+            </div>
+            <div class="col col-33">
+	            <card-nota></card-nota>
+            </div>
+            <div class="col col-33">
+	            <card-nota></card-nota>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

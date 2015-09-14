@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller("homeCtrl", function($scope, $state, $localstorage, $app) {
 
@@ -15,7 +15,9 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller("materiasCtrl", function($scope, $state, $localstorage, $ionicModal, $ionicListDelegate) {
+.controller("materiasCtrl", function($ionicPlatform,$scope, $state, $localstorage, $ionicModal, $ionicListDelegate) {
+
+    console.log("Materias");
 
     $scope.userNome = null;
     $scope.userPeriodo = null;
@@ -79,4 +81,64 @@ angular.module('starter.controllers', [])
         $scope.materias = [];
         localStorage.clear();
     }
+})
+
+.directive('cardNota', [function () {
+    return {
+        restrict: 'AE',
+        templateUrl:"templates/nota.html",
+        link: function (scope, iElement, iAttrs) {
+            
+        }
+    };
+}])
+
+.controller("materiaCtrl", function($ionicPlatform,$scope,$stateParams,$localstorage,$ionicModal) {
+
+    var indexMateria = $stateParams.materia;
+    var materiasObj = $localstorage.getObject('materias');
+    var periodo = $localstorage.get('periodo');
+
+    if (periodo=="bimestral") {
+        total = 4;
+    } else if(periodo=="trimestral") {
+        total = 3;
+    } else {
+        total = 2;
+    }
+
+    if(!$localstorage.get("notas")) {
+        var notas = [];
+        materiasObj.forEach(function(item) {
+            var notaMateria = [];
+            for(i = 0; i<=4; i++) {
+                notaMateria.push(0);
+            }
+            notas[item.name] = notaMateria;
+        });
+    } else {
+        notas = $localstorage.get("notas");
+    }
+
+    $scope.current = materiasObj[indexMateria];
+    $scope.periodo = periodo;
+
+
+
+    $ionicModal.fromTemplateUrl("templates/modal-nota.html", {
+        scope: $scope,
+        animation: "slide-in-up"
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.salvarNota = function() {
+
+    };
+
+    $scope.alterarNota = function(item) {
+        console.log("Alterar");
+        $scope.modal.show();
+    };
+   
 })

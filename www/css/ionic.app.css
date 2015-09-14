@@ -7699,3 +7699,7 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.big {
+  font-size: 3em;
+  line-height: normal; }

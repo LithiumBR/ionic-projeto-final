@@ -1,7 +1,7 @@
 <ion-view view-title="Materias">
     
     <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-minus-outline" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+        <button class="button button-icon icon ion-trash-a" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-icon ion-navicon" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
@@ -20,10 +20,10 @@
     <ion-content class="has-subheader" padding="true">
         <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
-            <ion-item ng-repeat="item in materias track by $index">
-                {{item.name}}
-
+            <ion-item ng-repeat="item in materias track by $index" class="item-button-right" ui-sref="edit({materia:$index})">
                 
+                <p>{{item.name}}</p>
+
                 <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
                 </ion-delete-button>
 
