@@ -3,3 +3,7 @@
 .errors p {
   color: red;
 }
+
+.big {
+	font-size: 5em;
+}

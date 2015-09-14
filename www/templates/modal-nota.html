@@ -1,0 +1,29 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-royal">
+        <h1 class="title">Alterar nota</h1>
+        <button class="button icon-right ionicon ion-close-round" ng-click="modal.hide();">
+        </button>
+    </ion-header-bar>
+    <ion-content padding="true" class="padding">
+        <div class="list">
+            <form ng-submit="updateItem(nota);nota='';">
+                    <div class="card">
+                        <div class="item item-text-wrap">
+                        <div class="big text-center royal">
+                            {{nota}}
+                        </div>
+                        </div>
+                    </div>
+                  <div class="item range range-positive">
+                    <i class="icon ion-ios-sunny-outline"></i>
+                    <input type="range" name="volume" min="0" max="10" step="1" ng-model="nota">
+                    <i class="icon ion-ios-sunny"></i>
+                  </div>
+
+                <button type="submit" class="button button-royal btn-block">
+                    Alterar
+                </button>
+            </form>
+        </div>
+    </ion-content>
+</ion-modal-view>
