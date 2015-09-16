@@ -7700,6 +7700,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.form-helper {
+  margin: 10px; }
+
 .big {
   font-size: 3em;
   line-height: normal; }
