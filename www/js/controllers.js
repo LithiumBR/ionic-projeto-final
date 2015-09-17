@@ -1,6 +1,7 @@
-angular.module('starter.controllers', ['ngCordova'])
+angular.module('starter.controllers', ['ngCordova','ngMessages'])
 
 .controller("homeCtrl", function($scope, $state, $localstorage, $app) {
+
 
     $scope.submitForm = function(data) {
 
