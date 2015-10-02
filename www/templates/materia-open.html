@@ -1,0 +1,59 @@
+<ion-view view-title="Editar">
+
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-arrow-return-left"  ui-sref="materias"></button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader">
+        <h2 class="title">Matéria de {{currentMateria.name}} <small>({{currentUser.periodo}})</small></h2>
+    </div>
+
+    <ion-content class="has-subheader">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="nota in notas">
+                <card-nota item="nota" index="{{currentMateria.name}}" nota="{{nota.value}}"></card-nota>
+            </ion-slide>
+        </ion-slide-box>
+
+
+        <div class="row p0">
+            <div class="col m-50 stable-bg">
+                <div class="box-geral">
+                    <i class="icon ion-university"></i>
+                    <small>Média geral</small>
+                    <h1 class="media-number">{{mediaGeral | number:1}}</h1>
+                </div>
+            </div>
+            <div class="col m-50 balanced-bg">
+                
+                <div class="pontuacao box-geral" ng-if="mediaGeral < 6.1">
+                    Fraco
+                    <br>
+                    <div class="stars">
+                    <i class="ion-ios-star"></i>
+                    </div>
+                </div>
+
+                <div class="pontuacao box-geral" ng-if="mediaGeral > 6 && mediaGeral<8">
+                    Bom
+                    <br>
+                    <div class="stars">
+                    <i class="ion-ios-star"></i>
+                    <i class="ion-ios-star"></i>
+                    </div>
+                </div>
+
+                <div class="pontuacao box-geral" ng-if="mediaGeral > 7.9">
+                    Muito bem!
+                    <br>
+                    <div class="stars">
+                    <i class="ion-ios-star"></i>
+                    <i class="ion-ios-star"></i>
+                    <i class="ion-ios-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

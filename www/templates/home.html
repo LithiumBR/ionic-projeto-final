@@ -1,25 +1,35 @@
 <ion-view title="Cadastre-se">
-    <ion-content padding="true" scroll="false" class="has-header">
-        <form name="cadastroForm" ng-submit="submitForm(data)">
+    <ion-content padding="true" scroll="false" class="has-header center">
+        <img class="logo" src="img/ionic.png" alt="Logo">
+        <form name="cadastroForm" ng-submit="submitForm(data)" novalidate="novalidate">
             <ion-list>
 
-                <label class="item item-input">
+                <label class="item item-input" ng-class="{'has-error':true}">
                     <span class="input-label">Nome</span>
-                    <input type="text" class="form-control" ng-model="data.nome" required>
+                    <input name="nome"
+                           type="text"
+                           class="form-control"
+                           placeholder="Digite seu nome"
+                           ng-model="data.nome"
+                           ng-minlength="5"
+                           ng-maxlength="15"
+                           required>
                 </label>
 
-                <label class="item item-select" >
-                    <span class="input-label">Período</span>
-                    <select ng-model="data.periodo" required>
-                        <option checked="checked" value="">Selecione</option>
-                        <option value="bimestral">Bimestral</option>
-                        <option value="trimestral">Trimestral</option>
-                        <option value="semestral">Semestral</option>
-                    </select>
-                </label>
+                <div
+                        class="form-helper assertive"
+                        ng-messages="cadastroForm.nome.$error"
+                        ng-if="cadastroForm.nome.$dirty || cadastroForm.$submitted"
+                        role="alert">
+                    <div ng-message="required">Campo obrigatório</div>
+                    <div ng-message="minlength, maxlength">
+                        Deve ter entre 5 e 15 caracteres
+                    </div>
+                </div>
 
             </ion-list>
-            <button type="submit" class="button button-royal button-block ">Entrar</button>
+            <button type="submit" class="button button-positive button-block ">Entrar</button>
         </form>
+
     </ion-content>
 </ion-view>
