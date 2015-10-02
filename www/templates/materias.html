@@ -1,34 +1,61 @@
 <ion-view view-title="Materias">
-    
     <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-arrow-left-a" ui-sref="cursos"></button>
         <button class="button button-icon icon ion-trash-a" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon ion-navicon" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
-        </button>
         <button class="button icon-right ionicon ion-plus-round" ng-click="modal.show()">
         </button>
     </ion-nav-buttons>
-
-
-
     <ion class="bar bar-subheader">
-        <h2 class="title">Matérias de {{userNome}}</h2>
+        <h2 class="title">
+        Matérias do curso {{curso.nome}} <br>
+        </h2>
     </ion>
-
-
     <ion-content class="has-subheader" padding="true">
+
+        <div class="padding center" ng-if="materias.length == 0">
+            <h3>Nenhum curso cadastrado ainda</h3>
+            <p>Clique no ícone <i class="ion-plus-round"></i> na barra superior</p>
+        </div>
+
         <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-
-            <ion-item ng-repeat="item in materias track by $index" class="item-button-right" ui-sref="edit({materia:$index})">
-                
-                <p>{{item.name}}</p>
-
-                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
-                </ion-delete-button>
-
-                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-            </ion-item>
-
+            <div ng-repeat="item in materias track by $index">
+                <ion-item class="item-button-right">
+                    <span class="materia-nome">{{item.nome}}</span>
+                    <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
+                    
+                    <span 
+                    ng-class="{
+                    'bad':(item.total_nota/item.total_periodo) < 5,
+                    'normal':(item.total_nota/item.total_periodo) > 4.9,
+                    'good':(item.total_nota/item.total_periodo) > 7.9,
+                    }"
+                    class="item-note">
+                    Média {{ (item.total_nota/item.total_periodo) | number:1 }}
+                    <i 
+                    class="ion-ios-pulse-strong icon">
+                    </i>
+                </span>
+                </ion-item>
+                <ion-item class="p0 nota-subitem">
+                    <!-- trimestral -->
+                    <div class="row p0">
+                        <div ng-class="{'col-33': item.periodo == 'trimestral' , 'col-25': item.periodo == 'bimestral',
+              'col-50': item.periodo == 'semestral' }" ng-repeat="nota in item.periodos">
+                            <div class="nota" ng-click="alterarNota(item,nota,$index)">
+                                <small class="badge-periodo">{{$index+1}} {{item.periodo | limitTo:3}}</small>
+                                <big>{{nota.nota | number:1}}</big>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
         </ion-list>
+
+        <p class="help center" ng-if="materias.length>0">* Clique em uma nota para alterar</p>
+    </ion-content>
 </ion-view>
+<div class="bar bar-footer bar-balanced">
+    <div class="title">Período ({{curso.periodo}})</div>
+</div>

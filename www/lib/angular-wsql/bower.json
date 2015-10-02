@@ -1,0 +1,51 @@
+{
+  "name": "angular-wsql",
+  "version": "0.8.5",
+  "homepage": "https://github.com/igorizr1/wSQL",
+  "authors": [
+    "igorizr1@gmail.com"
+  ],
+  "description": "wSQL - angularJS active record module for WebSQLite database - database in the browser. U can persist your data for your PhoneGap HTML5 applications build with ionic or angular. Good solution for mobile applications with offline mode.",
+  "main": "dist/wSQL.min.js",
+  "keywords": [
+    "WebSQLite",
+    "angular",
+    "ionic",
+    "PhoneGap",
+    "angular-WebSQLite",
+    "HTML5",
+    "SQL",
+    "SQLite",
+    "wSQL",
+    "wSQL.db",
+    "wSQL_db",
+    "Database",
+    "DB",
+    "SQLite",
+    "local storage",
+    "local data",
+    "local",
+    "persist",
+    "storage",
+    "wsql",
+    "w-sql",
+    "mobile devices",
+    "mobile SQLite",
+    "PhoneGap SQLite",
+    "active",
+    "record",
+    "ORM"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "dev"
+  ],
+  "dependencies": {
+    "angular": "~1.3.13"
+  }
+}

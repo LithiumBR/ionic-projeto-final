@@ -1,0 +1,41 @@
+<ion-view view-title="Cursos">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-minus-outline" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button icon-right ionicon ion-plus-round" ng-click="modal.show()">
+        </button>
+    </ion-nav-buttons>
+    <ion class="bar bar-subheader">
+        <h2 class="title">Meus cursos</h2>
+    </ion>
+    <ion-content class="has-subheader" padding="true">
+        <div class="padding center" ng-if="cursos.length == 0">
+            <h3>Nenhum curso cadastrado ainda</h3>
+            <p>Clique no ícone <i class="ion-plus-round"></i> na barra superior</p>
+        </div>
+
+        <div class="padding center" ng-if="cursos.length > 0">
+        <p>Clique em um curso para gerenciar as matérias</p>
+        </div>
+
+       <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+            <ion-item ng-repeat="curso in cursos" class="item-button-right" ui-sref="materias({idcurso:curso.id})">
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(curso)"></ion-delete-button>
+                {{curso.nome}}
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(curso)">
+                </ion-delete-button>
+
+                <span class="item-note">
+                  Periodo {{curso.periodo}}
+                </span>
+
+            </ion-item>
+        </ion-list>
+</ion-view>
+
+
+<div class="bar bar-footer bar-assertive" ng-if="cursos.length > 0">
+  <button class="button button-clear"  ng-click="clearAll()">
+  <i class="ion-trash-a"></i> Apagar tudo</button>
+</div>

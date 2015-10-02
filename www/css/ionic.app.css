@@ -7700,9 +7700,57 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.form-helper {
-  margin: 10px; }
+.center {
+  display: block;
+  text-align: center; }
 
-.big {
-  font-size: 3em;
-  line-height: normal; }
+.logo {
+  margin: 30px 0; }
+
+.p0 {
+  padding: 0; }
+
+.big-nota {
+  font-size: 64px;
+  padding: 30px;
+  display: block; }
+
+.materia-nome {
+  font-size: 22px; }
+
+.nota {
+  padding: 10px;
+  text-align: center; }
+  .nota .badge-periodo {
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #ffc900;
+    margin-bottom: 5px;
+    border-radius: 4px; }
+  .nota big {
+    display: block;
+    font-size: 32px;
+    font-weight: bold; }
+
+.help {
+  margin-top: 20px; }
+
+.nota-subitem {
+  background-color: #f8f8f8; }
+
+.icon {
+  font-size: 18px; }
+
+.bad {
+  color: #ef473a !important; }
+
+.normal {
+  color: #387ef5 !important; }
+
+.good {
+  color: #33cd5f !important; }
+
+/** Forms */
+.form-helper {
+  display: block;
+  margin: 10px 0; }

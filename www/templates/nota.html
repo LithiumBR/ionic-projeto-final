@@ -1,8 +1,4 @@
-<div class="card" ng-click="alterarNota()">
-    <div class="item item-divider">
-        <p>3º Tri</p>
-    </div>
-    <div class="item item-text-wrap">
-    	<div class="big">10</div>
-    </div>
+<div class="box" ng-click="alterarNota(item)">
+    <p>{{index}}º {{ currentPeriodo | limitTo : 3 : 0 | ucfirst}}</p>
+    <div class="big">{{nota}}</div>
 </div>
