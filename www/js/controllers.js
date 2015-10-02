@@ -176,20 +176,6 @@ angular.module('starter.controllers', ['ngMessages'])
     
   }
 
-  function recalcularMedia(item) {
-
-  }
-
 
 })
 
-.controller("materiaCtrl", function($ionicPlatform,$rootScope,$scope,$stateParams,$ionicModal,$ionicNavBarDelegate) {
-        
-})
-
-.controller("notasCtrl",function($ionicSlideBoxDelegate,$ionicPlatform,$scope,$stateParams,$ionicModal,$ionicNavBarDelegate) {
-
-})
-
-.controller("cardNotaCtrl",function($ionicPlatform,$scope,$stateParams,$ionicModal,$ionicNavBarDelegate) {
-});
