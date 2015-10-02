@@ -1,26 +1,24 @@
 <ion-modal-view>
-    <ion-header-bar class="bar-royal">
+    <ion-header-bar class="bar-balanced">
         <h1 class="title">Alterar nota</h1>
-        <button class="button icon-right ionicon ion-close-round" ng-click="modal.hide();">
+        <button class="button icon-right ionicon ion-close-round" ng-click="modalNota.hide();">
         </button>
     </ion-header-bar>
     <ion-content padding="true" class="padding">
         <div class="list">
-            <form ng-submit="updateItem(nota);nota='';">
-                    <div class="card">
-                        <div class="item item-text-wrap">
-                        <div class="big text-center royal">
-                            {{nota}}
-                        </div>
-                        </div>
+            <form ng-submit="updateNota(notaAlterar.nota);nota='';" class="padding">
+                <div class="row">
+                    <div class="col-50">
+                        <big class="big-nota">{{notaAlterar.nota}}</big>
                     </div>
-                  <div class="item range range-positive">
-                    <i class="icon ion-ios-sunny-outline"></i>
-                    <input type="range" name="volume" min="0" max="10" step="1" ng-model="nota">
-                    <i class="icon ion-ios-sunny"></i>
-                  </div>
+                    <div class="col-50">
+                    <label class="item item-input">
+                        <input placeholder="Digite uma nota" type="number" name="volume" step="any" min="0" max="10" step="1" ng-model="notaAlterar.nota">
+                    </label>
 
-                <button type="submit" class="button button-royal btn-block">
+                    </div>
+                </div>
+                <button type="submit" class="button button-full button-balanced btn-block">
                     Alterar
                 </button>
             </form>

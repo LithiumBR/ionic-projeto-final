@@ -1,145 +1,181 @@
-angular.module('starter.controllers', ['ngCordova','ngMessages'])
+angular.module('starter.controllers', ['ngMessages'])
 
-.controller("homeCtrl", function($scope, $state, $localstorage, $app) {
-
-
-    $scope.submitForm = function(data) {
-
-        if (data.nome && data.periodo) {
-
-            $localstorage.set('nome', data.nome);
-            $localstorage.set('periodo', data.periodo);
-
-            $state.go('materias');
+.controller("homeCtrl", function(User,$scope,$state,$rootScope) {
+  
+  /** Cria usuário */
+  $scope.submitForm = function(data) {
+        if (typeof data.nome != 'undefined') {
+            var userObj = {
+                name:data.nome
+            };
+            User.saveUser(userObj).then(function(result) {
+              $rootScope.setUser(userObj);
+              $state.go('cursos');
+            });
         }
     };
-
 })
-
-.controller("materiasCtrl", function($ionicPlatform,$scope, $state, $localstorage, $ionicModal, $ionicListDelegate) {
-
-    console.log("Materias");
-
-    $scope.userNome = null;
-    $scope.userPeriodo = null;
+.controller("cursosCtrl", function(User,Cursos,$scope,$state,$rootScope,$ionicModal,$ionicListDelegate,$ionicNavBarDelegate,$rootScope,$ionicPopup, $timeout) {
+      
+    $ionicNavBarDelegate.showBackButton(false);
+    $scope.cursos = [];
 
     $scope.data = {
-        showDelete: false
+      showDelete: false
     };
+    
+    Cursos.all().then(function(results) {
+      $scope.cursos = results;
+    });
 
-    if (localStorage.getItem('materias')) {
-        $scope.materias = JSON.parse(localStorage.materias);
-    } else {
-        $scope.materias = [];
-    }
-
-    if ($localstorage.get("nome") && $localstorage.get("periodo")) {
-        $scope.userNome = $localstorage.get("nome");
-        $scope.userPeriodo = $localstorage.get("periodo");
-    }
-
-    $ionicModal.fromTemplateUrl("templates/modal-materia.html", {
+    $ionicModal.fromTemplateUrl("templates/modal-curso.html", {
         scope: $scope,
         animation: "slide-in-up"
     }).then(function(modal) {
         $scope.modal = modal;
     });
 
-    $scope.addItem = function(materia) {
+    /** Adiciona novo curso */
+    $scope.addItem = function(data) {
+      console.log(data);
+      if (typeof data.curso != 'undefined') {
 
-        if (materia) {
+        var newCurso = {
+          "nome":data.curso,
+          "periodo":data.periodo
+        };
 
-            $scope.materias.push({
-                name: materia
-            });
+        Cursos.addCurso(newCurso).then(function(response) {
+          newCurso.id  = response.insertId;
+          $scope.cursos.push(newCurso);
+          $scope.modal.hide();
+        });
 
-            localStorage.setItem("materias", JSON.stringify($scope.materias))
-
-            $scope.materia = "";
-            $scope.modal.hide();
-
-        }
-    }
-
-    $scope.remove = function(index) {
-        $scope.materias.splice(index, 1);
-        localStorage.setItem("materias", JSON.stringify($scope.materias));
-        $ionicListDelegate.closeOptionButtons();
-    }
-
-    $scope.onItemDelete = function(item) {
-    	console.debug("item");
-        $scope.materias.splice($scope.materias.indexOf(item), 1);
+      }
     };
 
-    $scope.moveItem = function(item, fromIndex, toIndex) {
-        $scope.materias.splice(fromIndex, 1);
-        $scope.materias.splice(toIndex, 0, item);
-        localStorage.setItem("materias", JSON.stringify($scope.materias));
+    $scope.onItemDelete = function(item) {
+      Cursos.deleteItem(item).then(function(response) {
+        $scope.cursos.splice($scope.cursos.indexOf(item),1);
+        $scope.data.showDelete = false;
+      });
     };
 
     $scope.clearAll = function() {
-        $scope.materias = [];
-        localStorage.clear();
+       // A confirm dialog
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Isso irá apagar todos os dados',
+         template: 'Tem certeza disso?',
+         cancelText:"Cancelar",
+          okText:"Sim",
+          okType:'button-assertive'
+         
+       });
+       confirmPopup.then(function(res) {
+         if(res) {
+           User.removeUser().then(function() {
+            $state.go("home");
+           });
+         } else {
+           
+         }
+       });
     }
+
 })
 
-.directive('cardNota', [function () {
-    return {
-        restrict: 'AE',
-        templateUrl:"templates/nota.html",
-        link: function (scope, iElement, iAttrs) {
-            
-        }
-    };
-}])
+.controller("materiasCtrl", function(Cursos,Materias,Periodos,$scope,$ionicModal,$stateParams,$q,$ionicListDelegate,$ionicNavBarDelegate,$rootScope) {
+  
+  $scope.idcurso = $stateParams.idcurso;
+  $scope.materias = [];
+  $scope.notaAlterar = null;
+  $scope.itemAlterar = null;
+  $scope.itemAlterarIndex = 0;
 
-.controller("materiaCtrl", function($ionicPlatform,$scope,$stateParams,$localstorage,$ionicModal) {
+  var materias = [];
 
-    var indexMateria = $stateParams.materia;
-    var materiasObj = $localstorage.getObject('materias');
-    var periodo = $localstorage.get('periodo');
+  Materias.all($scope.idcurso).then(function(results) {
+    $scope.materias = results;
+  });
 
-    if (periodo=="bimestral") {
-        total = 4;
-    } else if(periodo=="trimestral") {
-        total = 3;
-    } else {
-        total = 2;
-    }
+  Cursos.getById($scope.idcurso).then(function(result) {
+    $rootScope.curso = result;
+  }); 
 
-    if(!$localstorage.get("notas")) {
-        var notas = [];
-        materiasObj.forEach(function(item) {
-            var notaMateria = [];
-            for(i = 0; i<=4; i++) {
-                notaMateria.push(0);
-            }
-            notas[item.name] = notaMateria;
-        });
-    } else {
-        notas = $localstorage.get("notas");
-    }
+  $ionicNavBarDelegate.showBackButton(false);
 
-    $scope.current = materiasObj[indexMateria];
-    $scope.periodo = periodo;
+  $scope.data = {
+    showDelete: false
+  };
 
-
-
-    $ionicModal.fromTemplateUrl("templates/modal-nota.html", {
+  $ionicModal.fromTemplateUrl("templates/modal-materia.html", {
         scope: $scope,
         animation: "slide-in-up"
     }).then(function(modal) {
         $scope.modal = modal;
+  });
+
+  $ionicModal.fromTemplateUrl("templates/modal-nota.html", {
+        scope: $scope,
+        animation: "slide-in-up"
+    }).then(function(modal) {
+        $scope.modalNota = modal;
+  });
+
+  /** Adiciona nova materia */
+  $scope.addItem = function(materia) {
+
+    if (typeof materia != 'undefined') {
+
+      var newMateria = {
+        "nome":materia,
+        "idcurso":$scope.idcurso
+      };
+
+      Materias.addMateria(newMateria,$rootScope.curso.periodo).then(function(response) {
+        newMateria.id  = response.insertId;
+        Materias.all($scope.idcurso).then(function(results) {
+          $scope.materias = results;
+        });
+        $scope.modal.hide();
+      });
+
+    }
+  };
+
+  $scope.onItemDelete = function(item) {
+    Materias.deleteItem(item).then(function(response) {
+      $scope.materias.splice($scope.materias.indexOf(item),1);
+      $scope.data.showDelete = false;
     });
+  };
 
-    $scope.salvarNota = function() {
+  $scope.alterarNota = function(item,nota,index) {
+    $scope.notaAlterar = nota;
+    $scope.itemAlterar = item;
+    $scope.itemAlterarIndex = index;
+    $scope.modalNota.show();
+ 
+  }
 
-    };
+  $scope.updateNota = function(nNota) {
 
-    $scope.alterarNota = function(item) {
-        console.log("Alterar");
-        $scope.modal.show();
-    };
-   
+    Periodos.alterarNota($scope.notaAlterar.id,nNota).then(function(response) {
+      $scope.notaAlterar.nota = nNota;
+      $scope.modalNota.hide();
+      $scope.itemAlterar.periodos[$scope.itemAlterarIndex].nota = parseFloat(nNota);
+
+      var totalNotas = 0;
+      angular.forEach($scope.itemAlterar.periodos,function(item,index) {
+        totalNotas += item.nota;
+      });
+
+      $scope.itemAlterar.total_nota = totalNotas;
+
+    });
+    
+  }
+
+
 })
+

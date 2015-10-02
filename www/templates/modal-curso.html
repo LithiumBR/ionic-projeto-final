@@ -1,0 +1,61 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">Adicionar curso</h1>
+        <button class="button icon-right ionicon ion-close-round" ng-click="modal.hide();">
+        </button>
+    </ion-header-bar>
+    <ion-content padding="true" class="padding">
+
+            <form name="cadastroCurso" ng-submit="addItem(data);data.curso='';" novalidate="novalidate">
+                <div class="list">
+
+                    <label class="item item-input">
+                        <input 
+                        name="nome"
+                        type="text" 
+                        placeholder="Nome do curso (Terceirão, Quinta série)" 
+                        ng-model="data.curso" 
+                        required>
+                    </label>
+
+                        <div
+                            class="form-helper assertive"
+                            ng-messages="cadastroCurso.nome.$error"
+                            ng-if="cadastroCurso.nome.$dirty || cadastroCurso.$submitted"
+                            role="alert">
+
+                        <div ng-message="required">Campo obrigatório</div>
+
+                        </div>
+
+                    <label class="item item-select" >
+                        <span class="input-label">Período</span>
+                        <select 
+                        name="periodo" 
+                        ng-model="data.periodo" 
+                        required>
+                            <option checked="checked" value="">Selecione</option>
+                            <option value="bimestral">Bimestral</option>
+                            <option value="trimestral">Trimestral</option>
+                            <option value="semestral">Semestral</option>
+                        </select>
+                    </label>
+
+                    <div
+                            class="form-helper assertive"
+                            ng-messages="cadastroCurso.periodo.$error"
+                            ng-if="cadastroCurso.periodo.$dirty || cadastroCurso.$submitted"
+                            role="alert">
+
+                        <div ng-message="required">Campo obrigatório</div>
+
+                        </div>
+
+                    <button type="submit" class="button button-full button-balanced">
+                        Criar curso
+                    </button>
+                </div>
+            </form>
+
+    </ion-content>
+</ion-modal-view>

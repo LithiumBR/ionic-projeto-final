@@ -1,19 +1,23 @@
 <ion-modal-view>
-    <ion-header-bar class="bar-royal">
+    <ion-header-bar class="bar-balanced">
         <h1 class="title">Adicionar matéria</h1>
         <button class="button icon-right ionicon ion-close-round" ng-click="modal.hide();">
         </button>
     </ion-header-bar>
     <ion-content padding="true" class="padding">
-        <div class="list">
-            <form ng-submit="addItem(materia);materia='';">
-                <label class="item item-input">
-                    <input type="text" placeholder="Português, Matemática, etc.." ng-model="materia">
-                </label>
-                <button type="submit" class="button button-royal">
-                    Criar matéria
-                </button>
+
+            <form ng-submit="addItem(materia);materia='';" class="padding">
+                <div class="list">
+
+                    <label class="item item-input">
+                        <input type="text" placeholder="Português, Matemática, etc.." ng-model="materia">
+                    </label>
+
+                    <button type="submit" class="button button-full button-balanced">
+                        Criar matéria
+                    </button>
+                </div>
             </form>
-        </div>
+
     </ion-content>
 </ion-modal-view>

@@ -1,5 +1,6 @@
 <ion-view title="Cadastre-se">
-    <ion-content padding="true" scroll="false" class="has-header">
+    <ion-content padding="true" scroll="false" class="has-header center">
+        <img class="logo" src="img/ionic.png" alt="Logo">
         <form name="cadastroForm" ng-submit="submitForm(data)" novalidate="novalidate">
             <ion-list>
 
@@ -8,6 +9,7 @@
                     <input name="nome"
                            type="text"
                            class="form-control"
+                           placeholder="Digite seu nome"
                            ng-model="data.nome"
                            ng-minlength="5"
                            ng-maxlength="15"
@@ -25,26 +27,8 @@
                     </div>
                 </div>
 
-                <label class="item item-select" >
-                    <span class="input-label">Período</span>
-                    <select name="periodo" ng-model="data.periodo" required>
-                        <option checked="checked" value="">Selecione</option>
-                        <option value="bimestral">Bimestral</option>
-                        <option value="trimestral">Trimestral</option>
-                        <option value="semestral">Semestral</option>
-                    </select>
-                </label>
-
-                <div
-                        class="form-helper assertive"
-                        ng-messages="cadastroForm.periodo.$error"
-                        ng-if="cadastroForm.nome.$dirty || cadastroForm.$submitted"
-                        role="alert">
-                    <div ng-message="required">Campo obrigatório</div>
-                </div>
-
             </ion-list>
-            <button type="submit" class="button button-royal button-block ">Entrar</button>
+            <button type="submit" class="button button-positive button-block ">Entrar</button>
         </form>
 
     </ion-content>
